@@ -13,10 +13,111 @@
         android:layout_height="0dp"
         android:layout_margin="4dp"
         android:background="@drawable/bg_canvas"
-        app:layout_constraintBottom_toTopOf="@id/ibBrush"
+        app:layout_constraintBottom_toTopOf="@id/llColors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/ibBrush"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/black"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/black"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/white"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/red"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/red"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/orange"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/orange"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/yellow"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/yellow"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/green"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/green"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/blue_light"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/blue_light"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/blue"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/blue"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@color/violet"
+            android:padding="0dp"
+            android:src="@drawable/color_normal"
+            android:tag="@color/violet"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/ibBrush"
@@ -25,9 +126,9 @@
         android:layout_margin="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_brush"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
