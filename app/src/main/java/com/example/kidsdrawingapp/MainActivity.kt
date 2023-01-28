@@ -2,6 +2,7 @@ package com.example.kidsdrawingapp
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,22 @@ class MainActivity : AppCompatActivity() {
         ibCurrentColor.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.color_selected))
         drawingView.setNewBrushSize(10.toFloat())
         ibBrush.setOnClickListener { showBrushSizeChooserDialog() }
+    }
+
+    fun onColorClick(view: View) {
+        if (view != ibCurrentColor) {
+            val imageButton = view as ImageButton
+            val colorTag = imageButton.tag.toString()
+            drawingView.setNewColor(colorTag)
+            imageButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.color_selected))
+            ibCurrentColor.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_normal
+                )
+            )
+            ibCurrentColor = view
+        }
     }
 
     private fun initViews() {

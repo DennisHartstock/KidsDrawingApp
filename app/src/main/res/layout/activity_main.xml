@@ -33,6 +33,7 @@
             android:layout_margin="4dp"
             android:background="@color/black"
             android:padding="0dp"
+            android:onClick="onColorClick"
             android:src="@drawable/color_normal"
             android:tag="@color/black"
             tools:ignore="ContentDescription" />
@@ -41,17 +42,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="4dp"
-            android:background="@color/white"
-            android:padding="0dp"
-            android:src="@drawable/color_normal"
-            android:tag="@color/white"
-            tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="4dp"
             android:background="@color/red"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/red"
@@ -61,6 +53,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="4dp"
+            android:onClick="onColorClick"
             android:background="@color/orange"
             android:padding="0dp"
             android:src="@drawable/color_normal"
@@ -71,6 +64,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="4dp"
+            android:onClick="onColorClick"
             android:background="@color/yellow"
             android:padding="0dp"
             android:src="@drawable/color_normal"
@@ -82,6 +76,7 @@
             android:layout_height="25dp"
             android:layout_margin="4dp"
             android:background="@color/green"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/green"
@@ -92,6 +87,7 @@
             android:layout_height="25dp"
             android:layout_margin="4dp"
             android:background="@color/blue_light"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/blue_light"
@@ -102,6 +98,7 @@
             android:layout_height="25dp"
             android:layout_margin="4dp"
             android:background="@color/blue"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/blue"
@@ -112,9 +109,22 @@
             android:layout_height="25dp"
             android:layout_margin="4dp"
             android:background="@color/violet"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/violet"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/eraser"
+            android:onClick="onColorClick"
+            android:padding="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/color_normal"
+            android:tag="@color/white"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
