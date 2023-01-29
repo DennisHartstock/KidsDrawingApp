@@ -6,6 +6,16 @@
     android:layout_height="match_parent">
 
     <ImageButton
+        android:id="@+id/ibUltraSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ultra_small"
+        app:layout_constraintBottom_toTopOf="@id/ibSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
         android:id="@+id/ibSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

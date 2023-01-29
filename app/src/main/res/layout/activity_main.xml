@@ -7,16 +7,33 @@
     android:background="@android:color/holo_red_dark"
     tools:context=".MainActivity">
 
-    <com.example.kidsdrawingapp.DrawingView
-        android:id="@+id/vDrawing"
+    <FrameLayout
+        android:id="@+id/flCanvasContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="4dp"
         android:background="@drawable/bg_canvas"
+        android:padding="1dp"
         app:layout_constraintBottom_toTopOf="@id/llColors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivColoring"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/neznajka_na_lune"
+            tools:ignore="ContentDescription" />
+
+        <com.example.kidsdrawingapp.DrawingView
+            android:id="@+id/dvCanvas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80FFFFFF" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/llColors"
@@ -32,8 +49,8 @@
             android:layout_height="25dp"
             android:layout_margin="4dp"
             android:background="@color/black"
-            android:padding="0dp"
             android:onClick="onColorClick"
+            android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/black"
             tools:ignore="ContentDescription" />
@@ -53,8 +70,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="4dp"
-            android:onClick="onColorClick"
             android:background="@color/orange"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/orange"
@@ -64,8 +81,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="4dp"
-            android:onClick="onColorClick"
             android:background="@color/yellow"
+            android:onClick="onColorClick"
             android:padding="0dp"
             android:src="@drawable/color_normal"
             android:tag="@color/yellow"
@@ -136,9 +153,9 @@
         android:layout_margin="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_brush"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

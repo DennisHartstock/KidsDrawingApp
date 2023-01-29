@@ -11,7 +11,7 @@ import androidx.core.view.get
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var drawingView: DrawingView
+    private lateinit var dvCanvas: DrawingView
     private lateinit var llColors: LinearLayout
     private lateinit var ibCurrentColor: ImageButton
     private lateinit var ibBrush: ImageButton
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         ibCurrentColor = llColors[0] as ImageButton
         ibCurrentColor.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.color_selected))
-        drawingView.setNewBrushSize(10.toFloat())
+        dvCanvas.setNewBrushSize(10.toFloat())
         ibBrush.setOnClickListener { showBrushSizeChooserDialog() }
     }
 
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         if (view != ibCurrentColor) {
             val imageButton = view as ImageButton
             val colorTag = imageButton.tag.toString()
-            drawingView.setNewColor(colorTag)
+            dvCanvas.setNewColor(colorTag)
             imageButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.color_selected))
             ibCurrentColor.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        drawingView = findViewById(R.id.vDrawing)
+        dvCanvas = findViewById(R.id.dvCanvas)
         llColors = findViewById(R.id.llColors)
         ibBrush = findViewById(R.id.ibBrush)
     }
@@ -53,19 +53,25 @@ class MainActivity : AppCompatActivity() {
         brushDialog.setContentView(R.layout.dialog_brush_size)
         brushDialog.setTitle("Choose brush size")
 
+        val ibUltraSmall = brushDialog.findViewById<ImageButton>(R.id.ibUltraSmall)
+        ibUltraSmall.setOnClickListener {
+            dvCanvas.setNewBrushSize(2.toFloat())
+            brushDialog.dismiss()
+        }
+
         val ibSmall = brushDialog.findViewById<ImageButton>(R.id.ibSmall)
         ibSmall.setOnClickListener {
-            drawingView.setNewBrushSize(10.toFloat())
+            dvCanvas.setNewBrushSize(10.toFloat())
             brushDialog.dismiss()
         }
         val ibMedium = brushDialog.findViewById<ImageButton>(R.id.ibMedium)
         ibMedium.setOnClickListener {
-            drawingView.setNewBrushSize(20.toFloat())
+            dvCanvas.setNewBrushSize(20.toFloat())
             brushDialog.dismiss()
         }
         val ibLarge = brushDialog.findViewById<ImageButton>(R.id.ibLarge)
         ibLarge.setOnClickListener {
-            drawingView.setNewBrushSize(30.toFloat())
+            dvCanvas.setNewBrushSize(30.toFloat())
             brushDialog.dismiss()
         }
         brushDialog.show()
