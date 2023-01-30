@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ibBrush"
+        app:layout_constraintBottom_toTopOf="@id/llTools"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -146,16 +146,34 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/ibBrush"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="4dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_brush"
+    <LinearLayout
+        android:id="@+id/llTools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/ibGallery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_gallery"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/ibBrush"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_brush"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

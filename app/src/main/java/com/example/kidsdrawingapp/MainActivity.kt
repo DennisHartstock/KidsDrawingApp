@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
     private fun showBrushSizeChooserDialog() {
         val brushDialog = Dialog(this)
         brushDialog.setContentView(R.layout.dialog_brush_size)
-        brushDialog.setTitle("Choose brush size")
 
         val ibUltraSmall = brushDialog.findViewById<ImageButton>(R.id.ibUltraSmall)
         ibUltraSmall.setOnClickListener {
