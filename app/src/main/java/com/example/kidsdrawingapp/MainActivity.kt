@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var ibCurrentColor: ImageButton
     private lateinit var ibBrush: ImageButton
     private lateinit var ibGallery: ImageButton
+    private lateinit var ibUndo: ImageButton
     private lateinit var ivColoring: ImageView
 
     private val openGalleryLauncher: ActivityResultLauncher<Intent> =
@@ -43,6 +44,9 @@ class MainActivity : AppCompatActivity() {
             val pickIntent =
                 Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             openGalleryLauncher.launch(pickIntent)
+        }
+        ibUndo.setOnClickListener {
+            dvCanvas.onUndoClick()
         }
     }
 
@@ -67,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         llColors = findViewById(R.id.llColors)
         ibBrush = findViewById(R.id.ibBrush)
         ibGallery = findViewById(R.id.ibGallery)
+        ibUndo = findViewById(R.id.ibUndo)
         ivColoring = findViewById(R.id.ivColoring)
     }
 
