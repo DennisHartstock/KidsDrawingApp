@@ -1,10 +1,15 @@
 package com.example.kidsdrawingapp
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -15,6 +20,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var llColors: LinearLayout
     private lateinit var ibCurrentColor: ImageButton
     private lateinit var ibBrush: ImageButton
+    private lateinit var ibGallery: ImageButton
+    private lateinit var ivColoring: ImageView
+
+    private val openGalleryLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                ivColoring.setImageURI(result.data?.data)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         ibCurrentColor.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.color_selected))
         dvCanvas.setNewBrushSize(10.toFloat())
         ibBrush.setOnClickListener { showBrushSizeChooserDialog() }
+        ibGallery.setOnClickListener {
+            val pickIntent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            openGalleryLauncher.launch(pickIntent)
+        }
     }
 
     fun onColorClick(view: View) {
@@ -46,6 +66,8 @@ class MainActivity : AppCompatActivity() {
         dvCanvas = findViewById(R.id.dvCanvas)
         llColors = findViewById(R.id.llColors)
         ibBrush = findViewById(R.id.ibBrush)
+        ibGallery = findViewById(R.id.ibGallery)
+        ivColoring = findViewById(R.id.ivColoring)
     }
 
     private fun showBrushSizeChooserDialog() {
