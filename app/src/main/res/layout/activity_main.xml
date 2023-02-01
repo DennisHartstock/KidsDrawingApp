@@ -166,6 +166,15 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
+            android:id="@+id/ibSave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_save"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
             android:id="@+id/ibBrush"
             android:layout_width="50dp"
             android:layout_height="50dp"

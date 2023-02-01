@@ -2,17 +2,28 @@ package com.example.kidsdrawingapp
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var ibCurrentColor: ImageButton
     private lateinit var ibBrush: ImageButton
     private lateinit var ibGallery: ImageButton
+    private lateinit var ibSave: ImageButton
     private lateinit var ibUndo: ImageButton
     private lateinit var ivColoring: ImageView
 
@@ -48,6 +60,63 @@ class MainActivity : AppCompatActivity() {
         ibUndo.setOnClickListener {
             dvCanvas.onUndoClick()
         }
+        ibSave.setOnClickListener {
+            lifecycleScope.launch {
+                saveBitmap(getBitmapFromView(dvCanvas))
+            }
+        }
+    }
+
+    private suspend fun saveBitmap(bitmap: Bitmap?): String {
+        var result = ""
+        withContext(Dispatchers.IO) {
+            if (bitmap != null) {
+                try {
+                    val byteArrayOutputStream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 75, byteArrayOutputStream)
+
+                    val fileName = File(buildString {
+                        append(externalCacheDir?.absolutePath.toString())
+                        append(File.separator)
+                        append("kids_drawing_app_")
+                        append(System.currentTimeMillis() / 1000)
+                        append(".png")
+                    })
+
+                    val fileOutputStream = FileOutputStream(fileName)
+                    fileOutputStream.write(byteArrayOutputStream.toByteArray())
+                    fileOutputStream.close()
+
+                    result = fileName.absolutePath
+                    runOnUiThread {
+                        if (result.isNotEmpty()) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "File saved successfully: $result",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.stackTrace
+                }
+            }
+        }
+        return result
+    }
+
+    private fun getBitmapFromView(view: View): Bitmap {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.WHITE)
+        view.draw(canvas)
+        return bitmap
     }
 
     fun onColorClick(view: View) {
@@ -71,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         llColors = findViewById(R.id.llColors)
         ibBrush = findViewById(R.id.ibBrush)
         ibGallery = findViewById(R.id.ibGallery)
+        ibSave = findViewById(R.id.ibSave)
         ibUndo = findViewById(R.id.ibUndo)
         ivColoring = findViewById(R.id.ivColoring)
     }
