@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var ibSave: ImageButton
     private lateinit var ibUndo: ImageButton
     private lateinit var ivColoring: ImageView
+    private lateinit var progressDialog: Dialog
 
     private val openGalleryLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -61,10 +62,17 @@ class MainActivity : AppCompatActivity() {
             dvCanvas.onUndoClick()
         }
         ibSave.setOnClickListener {
+            showProgressDialog()
             lifecycleScope.launch {
                 saveBitmap(getBitmapFromView(dvCanvas))
             }
         }
+    }
+
+    private fun showProgressDialog() {
+        progressDialog = Dialog(this@MainActivity)
+        progressDialog.setContentView(R.layout.dialog_progress)
+        progressDialog.show()
     }
 
     private suspend fun saveBitmap(bitmap: Bitmap?): String {
@@ -89,6 +97,7 @@ class MainActivity : AppCompatActivity() {
 
                     result = fileName.absolutePath
                     runOnUiThread {
+                        progressDialog.dismiss()
                         if (result.isNotEmpty()) {
                             Toast.makeText(
                                 this@MainActivity,
